@@ -1,10 +1,10 @@
-# 📊 ECOTRIX — Road Accidents in India: Econometric Analysis
+ECOTRIX — Road Accidents in India: Econometric Analysis
 
-**Authors:** Jai Ram Suri · Anurag Upadhyay · Raghav Vaidya · Shreyansh Goel · Jatin Sharma
+**Author:** Anurag Upadhyay 
 
 ---
 
-## 📌 Research Question
+##  Research Question
 
 > *What is the impact of **vehicle density** and **road length** on the number of road accidents in India?*
 
@@ -12,7 +12,7 @@ India reports over 4,61,000 road accidents annually — 53 accidents and 19 deat
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 ecotrix_project/
@@ -26,7 +26,7 @@ ecotrix_project/
 
 ---
 
-## 🔬 Methodology & Models
+##  Methodology & Models
 
 The analysis progresses through the following steps:
 
@@ -40,9 +40,9 @@ Road_Accidents = β0 + β1·Road_Length + β2·Density + β3·Reg_Vehicles + ε
 ### 2. Multicollinearity Detection (VIF)
 | Variable | VIF | Status |
 |---|---|---|
-| Road Length | 4.563 | ✅ OK |
-| Vehicle Density | 4.563 | ✅ OK |
-| Registered Vehicles | 134.565 | ❌ Dropped |
+| Road Length | 4.563 |  OK |
+| Vehicle Density | 4.563 |  OK |
+| Registered Vehicles | 134.565 |  Dropped |
 
 `Registered_Vehicles` is dropped due to extreme collinearity with Density.
 
@@ -75,7 +75,7 @@ ln(Accidents) = 6.17 + 0.256·ln(Density) + 0.399·ln(Road_Length)
 
 ---
 
-## 📦 Setup & Installation
+##  Setup & Installation
 
 ### Prerequisites
 ```bash
@@ -106,7 +106,7 @@ python visualizations.py
 
 ---
 
-## 📚 Data Sources
+##  Data Sources
 
 | Variable | Source |
 |---|---|
@@ -118,7 +118,7 @@ python visualizations.py
 
 ---
 
-## 🧪 Tests Performed
+##  Tests Performed
 
 | Test | Purpose | Result |
 |---|---|---|
@@ -131,7 +131,7 @@ python visualizations.py
 
 ---
 
-## 📖 Key Findings
+##  Key Findings
 
 1. **Vehicle density** and **road length** are both statistically significant predictors of road accidents
 2. **Road length has a larger elasticity (0.399)** than density (0.256) — infrastructure expansion poses greater accident risk than density alone
