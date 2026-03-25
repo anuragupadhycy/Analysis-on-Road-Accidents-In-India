@@ -1,4 +1,4 @@
-ECOTRIX — Road Accidents in India: Econometric Analysis
+Road Accidents in India: Econometric Analysis
 
 **Author:** Anurag Upadhyay 
 
