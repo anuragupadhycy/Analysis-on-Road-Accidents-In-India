@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook — generated with runcell</title>
+    <meta name="description" content="Exported with runcell — convert .ipynb notebooks to HTML or PDF anytime at runcell.dev." />
+    <meta name="generator" content="runcell" />
+    <style>
+        :root {
+            --jp-code-font-family: 'SFMono-Regular', Menlo, Consolas, 'Liberation Mono', monospace;
+            --jp-content-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            --jp-cell-prompt-width: 64px;
+            --jp-input-prompt-color: #307fc1;
+            --jp-output-prompt-color: #bf5b3d;
+            --jp-cell-input-bg: #f7f7f7;
+            --jp-layout-color0: #ffffff;
+            --jp-layout-color1: #f7f7f7;
+            --jp-border-color1: #e0e0e0;
+            --jp-content-font-color0: #000000;
+            --jp-content-font-color1: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--jp-content-font-family);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--jp-content-font-color0);
+            background-color: var(--jp-layout-color0);
+            margin: 0;
+            padding: 0;
+        }
+
+        .notebook-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Cell structure */
+        .cell {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .cell-prompt {
+            min-width: var(--jp-cell-prompt-width);
+            width: var(--jp-cell-prompt-width);
+            font-family: var(--jp-code-font-family);
+            font-size: 12px;
+            padding: 10px 8px 10px 0;
+            text-align: right;
+            flex-shrink: 0;
+            user-select: none;
+        }
+
+        .cell-content {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        /* Input prompt styling - Jupyter blue */
+        .input-prompt {
+            color: var(--jp-input-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Output prompt styling - Jupyter red/orange */
+        .output-prompt {
+            color: var(--jp-output-prompt-color);
+            font-weight: bold;
+        }
+
+        /* Code cell input area */
+        .input-area {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            overflow-x: auto;
+        }
+
+        .input-area pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Output area */
+        .output-area {
+            margin-top: 0;
+        }
+
+        .output-wrapper {
+            display: flex;
+            flex-direction: row;
+            margin-top: 4px;
+        }
+
+        .output-content {
+            flex: 1;
+            min-width: 0;
+            padding: 8px 0;
+        }
+
+        .output-content pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Stream output (stdout/stderr) */
+        .output-stream {
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .output-stderr {
+            background-color: #fdd;
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        /* Execute result / display data */
+        .output-result {
+            padding: 4px 0;
+        }
+
+        .output-result pre {
+            margin: 0;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+        }
+
+        /* Image output */
+        .output-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* HTML output (DataFrames, etc.) */
+        .output-html {
+            overflow-x: auto;
+        }
+
+        .output-html table {
+            border-collapse: collapse;
+            font-size: 13px;
+            font-family: var(--jp-content-font-family);
+        }
+
+        .output-html table th,
+        .output-html table td {
+            border: 1px solid #ddd;
+            padding: 6px 10px;
+            text-align: left;
+        }
+
+        .output-html table th {
+            background-color: #f5f5f5;
+            font-weight: 600;
+        }
+
+        .output-html table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        /* Error output */
+        .output-error {
+            background-color: #fff0f0;
+            padding: 8px 12px;
+            border-radius: 2px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Markdown cell styling */
+        .markdown-cell {
+            padding: 10px 0;
+        }
+
+        .markdown-cell h1 {
+            font-size: 2em;
+            font-weight: 600;
+            margin: 0.67em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin: 0.83em 0;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid var(--jp-border-color1);
+        }
+
+        .markdown-cell h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin: 1em 0;
+        }
+
+        .markdown-cell h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin: 1.33em 0;
+        }
+
+        .markdown-cell h5 {
+            font-size: 0.875em;
+            font-weight: 600;
+            margin: 1.67em 0;
+        }
+
+        .markdown-cell h6 {
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: 2.33em 0;
+            color: #6a737d;
+        }
+
+        .markdown-cell p {
+            margin: 0 0 16px 0;
+            line-height: 1.6;
+        }
+
+        .markdown-cell code {
+            font-family: var(--jp-code-font-family);
+            font-size: 85%;
+            background-color: rgba(27, 31, 35, 0.05);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+        }
+
+        .markdown-cell pre {
+            background-color: var(--jp-cell-input-bg);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 3px;
+            padding: 16px;
+            overflow-x: auto;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+
+        .markdown-cell pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 100%;
+        }
+
+        .markdown-cell blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 4px solid #dfe2e5;
+        }
+
+        .markdown-cell ul,
+        .markdown-cell ol {
+            margin: 0 0 16px 0;
+            padding-left: 2em;
+        }
+
+        .markdown-cell li {
+            margin: 0.25em 0;
+        }
+
+        .markdown-cell a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .markdown-cell a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-cell hr {
+            border: 0;
+            border-top: 1px solid var(--jp-border-color1);
+            margin: 24px 0;
+        }
+
+        .markdown-cell img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .markdown-cell table {
+            border-collapse: collapse;
+            margin: 0 0 16px 0;
+        }
+
+        .markdown-cell table th,
+        .markdown-cell table td {
+            border: 1px solid #dfe2e5;
+            padding: 6px 13px;
+        }
+
+        .markdown-cell table th {
+            font-weight: 600;
+            background-color: #f6f8fa;
+        }
+
+        .markdown-cell table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
+        /* Raw cell styling */
+        .raw-cell {
+            background-color: var(--jp-layout-color1);
+            border: 1px solid var(--jp-border-color1);
+            border-radius: 2px;
+            padding: 8px 12px;
+            font-family: var(--jp-code-font-family);
+            font-size: 13px;
+            white-space: pre-wrap;
+        }
+
+        /* Empty prompt placeholder */
+        .prompt-empty {
+            color: transparent;
+        }
+
+        .export-footer {
+            margin-top: 32px;
+            padding-top: 16px;
+            border-top: 1px solid var(--jp-border-color1);
+            color: #555;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        .export-footer a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+
+        .export-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook-container">
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3><strong>Extracting Data and defining our variables</strong></h3></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [25]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
+from scipy import stats
+from scipy.linalg import solve
+import warnings
+warnings.filterwarnings('ignore')
+
+# ── 0. DATA ──────────────────────────────────────────────────────────────────
+data = {
+    "Year": list(range(1990, 2010)),
+    "Road_Accidents": [
+        282600, 295131, 275541, 284646, 325864,
+        351999, 371204, 373671, 385018, 386456,
+        391449, 405637, 407497, 406726, 429910,
+        439255, 460920, 479216, 484704, 486384
+    ],
+    "Road_Length_km": [
+        1983867, 2331086, 2482289, 2614662, 2890950,
+        2975035, 3202515, 3298788, 3228356, 3296650,
+        3316078, 3346667, 3383344, 3553468, 3621508,
+        3809156, 3880651, 4016401, 4109592, 4471510
+    ],
+    "Vehicle_Density": [
+        9.654, 9.654, 9.169, 9.47, 10,
+        10, 11, 11, 13, 14,
+        15, 16, 17, 19, 20,
+        21, 23, 24, 26, 26
+    ],
+    "Registered_Vehicles": [
+        19152569, 21374365, 23020338, 24926670, 27704270,
+        30294581, 33907554, 37222828, 39502595, 42234841,
+        44905766, 48857581, 52736313, 58919064, 64471622,
+        72718698, 81540448, 89618015, 95254609, 105353018
+    ]
+}
+
+df = pd.DataFrame(data)
+
+# Log-transform columns
+df['ln_accidents']   = np.log(df['Road_Accidents'])
+df['ln_road_length'] = np.log(df['Road_Length_km'])
+df['ln_density']     = np.log(df['Vehicle_Density'])
+df['ln_reg_veh']     = np.log(df['Registered_Vehicles'])
+
+print("=" * 65)
+print("   ECOTRIX — Road Accidents in India (1990–2009)")
+print("=" * 65)
+print(df[['Year','Road_Accidents','Road_Length_km','Vehicle_Density']].to_string(index=False))
+
+
+# ── HELPER FUNCTIONS ──────────────────────────────────────────────────────────
+
+def ols(y, X):
+    """Returns beta, residuals, fitted values, (X'X)^-1"""
+    XtX_inv = np.linalg.inv(X.T @ X)
+    beta    = XtX_inv @ X.T @ y
+    y_hat   = X @ beta
+    resid   = y - y_hat
+    return beta, resid, y_hat, XtX_inv
+
+def ols_stats(y, X, beta, resid, label_y, label_X, model_name="OLS"):
+    n, k = X.shape
+    df_res = n - k
+    SSR   = resid @ resid
+    SST   = ((y - y.mean()) ** 2).sum()
+    SSE   = SST - SSR
+    R2    = 1 - SSR / SST
+    R2adj = 1 - (SSR / df_res) / (SST / (n - 1))
+    s2    = SSR / df_res
+    se    = np.sqrt(s2)
+    XtX_inv = np.linalg.inv(X.T @ X)
+    se_beta = np.sqrt(s2 * np.diag(XtX_inv))
+    t_vals  = beta / se_beta
+    p_vals  = [2 * (1 - stats.t.cdf(abs(t), df_res)) for t in t_vals]
+    F_stat  = (SSE / (k - 1)) / (SSR / df_res)
+    F_pval  = 1 - stats.f.cdf(F_stat, k - 1, df_res)
+
+    print(f"\n{'─'*65}")
+    print(f"  {model_name}  |  Dep. var: {label_y}  |  n={n}")
+    print(f"{'─'*65}")
+    print(f"{'Variable':&lt;22} {'Coef':&gt;12} {'Std.Err':&gt;12} {'t':&gt;8} {'p-val':&gt;8}")
+    print(f"{'─'*65}")
+    for i, lbl in enumerate(label_X):
+        sig = " ***" if p_vals[i] &lt; 0.001 else " **" if p_vals[i] &lt; 0.01 else " *" if p_vals[i] &lt; 0.05 else ""
+        print(f"{lbl:&lt;22} {beta[i]:&gt;12.6f} {se_beta[i]:&gt;12.6f} {t_vals[i]:&gt;8.4f} {p_vals[i]:&gt;8.4f}{sig}")
+    print(f"{'─'*65}")
+    print(f"  R²={R2:.6f}  Adj-R²={R2adj:.6f}  F={F_stat:.4f}  p(F)={F_pval:.4e}")
+    print(f"  S.E. of regression={se:.4f}  RSS={SSR:.4f}")
+    dw = durbin_watson(resid)
+    print(f"  Durbin-Watson={dw:.6f}")
+    return {"R2": R2, "R2adj": R2adj, "F": F_stat, "F_pval": F_pval,
+            "se": se, "beta": beta, "se_beta": se_beta, "t": t_vals, "p": p_vals,
+            "resid": resid, "y_hat": X @ beta, "DW": dw, "n": n, "k": k}
+
+def durbin_watson(resid):
+    diff = np.diff(resid)
+    return (diff @ diff) / (resid @ resid)
+
+def vif(X_df):
+    """Variance Inflation Factors (excludes constant column)."""
+    cols = X_df.columns.tolist()
+    vifs = {}
+    for i, col in enumerate(cols):
+        y_i = X_df[col].values
+        others = X_df.drop(columns=col).values
+        X_i = np.column_stack([np.ones(len(y_i)), others])
+        _, resid, _, _ = ols(y_i, X_i)
+        SSR = resid @ resid
+        SST = ((y_i - y_i.mean()) ** 2).sum()
+        R2  = 1 - SSR / SST
+        vifs[col] = 1 / (1 - R2) if R2 &lt; 1 else np.inf
+    return vifs
+
+def breusch_godfrey(resid, X, p=1):
+    """BG test for AR(p) autocorrelation."""
+    n = len(resid)
+    lagged = np.column_stack([resid[p - j:n - j] for j in range(1, p + 1)])
+    X_aux  = np.column_stack([X[p:], lagged])
+    _, resid_aux, _, _ = ols(resid[p:], X_aux)
+    SSR = resid_aux @ resid_aux
+    SST = ((resid[p:] - resid[p:].mean()) ** 2).sum()
+    R2  = 1 - SSR / SST
+    LM  = (n - p) * R2
+    pval = 1 - stats.chi2.cdf(LM, df=p)
+    print(f"\n  Breusch-Godfrey Test (AR{p})")
+    print(f"  LM statistic = {LM:.6f},  p-value = {pval:.6f}")
+    print(f"  {'Reject H0: Autocorrelation present' if pval &lt; 0.05 else 'Fail to reject H0: No autocorrelation'}")
+    return LM, pval
+
+def ramsey_reset(y, X, y_hat, resid, power=2):
+    """Ramsey RESET test using powers of fitted values."""
+    n, k = X.shape
+    powers = np.column_stack([y_hat ** p for p in range(2, 2 + power)])
+    X_aug  = np.column_stack([X, powers])
+    _, resid_r, _, _ = ols(y, X_aug)
+    SSR_r  = resid_r @ resid_r
+    SSR_u  = resid @ resid
+    df1    = power
+    df2    = n - k - power
+    F      = ((SSR_u - SSR_r) / df1) / (SSR_r / df2)
+    pval   = 1 - stats.f.cdf(F, df1, df2)
+    print(f"\n  Ramsey RESET Test")
+    print(f"  F({df1},{df2}) = {F:.6f},  p-value = {pval:.6f}")
+    print(f"  {'Reject H0: Model has specification error' if pval &lt; 0.05 else 'Fail to reject: Adequate specification'}")
+    return F, pval
+
+def jarque_bera(resid):
+    n  = len(resid)
+    S  = stats.skew(resid)
+    K  = stats.kurtosis(resid, fisher=False)
+    JB = n / 6 * (S**2 + (K - 3)**2 / 4)
+    pval = 1 - stats.chi2.cdf(JB, df=2)
+    print(f"\n  Jarque-Bera Normality Test")
+    print(f"  Chi²(2) = {JB:.6f},  p-value = {pval:.6f}")
+    print(f"  {'Reject H0: Residuals NOT normally distributed' if pval &lt; 0.05 else 'Fail to reject H0: Residuals are normally distributed'}")
+    return JB, pval
+
+def confidence_intervals(beta, se_beta, n, k, alpha=0.05):
+    df_res = n - k
+    t_crit = stats.t.ppf(1 - alpha / 2, df_res)
+    lower  = beta - t_crit * se_beta
+    upper  = beta + t_crit * se_beta
+    return lower, upper</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">=================================================================
+   ECOTRIX — Road Accidents in India (1990–2009)
+=================================================================
+ Year  Road_Accidents  Road_Length_km  Vehicle_Density
+ 1990          282600         1983867            9.654
+ 1991          295131         2331086            9.654
+ 1992          275541         2482289            9.169
+ 1993          284646         2614662            9.470
+ 1994          325864         2890950           10.000
+ 1995          351999         2975035           10.000
+ 1996          371204         3202515           11.000
+ 1997          373671         3298788           11.000
+ 1998          385018         3228356           13.000
+ 1999          386456         3296650           14.000
+ 2000          391449         3316078           15.000
+ 2001          405637         3346667           16.000
+ 2002          407497         3383344           17.000
+ 2003          406726         3553468           19.000
+ 2004          429910         3621508           20.000
+ 2005          439255         3809156           21.000
+ 2006          460920         3880651           23.000
+ 2007          479216         4016401           24.000
+ 2008          484704         4109592           26.000
+ 2009          486384         4471510           26.000
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3><strong>Model 1</strong> </h3></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [5]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>
+y  = df['Road_Accidents'].values.astype(float)
+X1 = np.column_stack([
+    np.ones(len(df)),
+    df['Road_Length_km'],
+    df['Vehicle_Density'],
+    df['Registered_Vehicles']
+])
+b1, r1, yh1, _ = ols(y, X1)
+s1 = ols_stats(y, X1, b1, r1,
+               "Road_Accidents",
+               ["const","Road_Length","Density","Reg_Vehicles"],
+               "Model 1 – Full OLS")
+</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+─────────────────────────────────────────────────────────────────
+  Model 1 – Full OLS  |  Dep. var: Road_Accidents  |  n=20
+─────────────────────────────────────────────────────────────────
+Variable                       Coef      Std.Err        t    p-val
+─────────────────────────────────────────────────────────────────
+const                  29103.648844 41640.491769   0.6989   0.4946
+Road_Length                0.089683     0.015329   5.8505   0.0000 ***
+Density                 9147.530210  3563.694559   2.5669   0.0207 *
+Reg_Vehicles              -0.001610     0.000971  -1.6585   0.1167
+─────────────────────────────────────────────────────────────────
+  R²=0.965638  Adj-R²=0.959195  F=149.8771  p(F)=6.3890e-12
+  S.E. of regression=13650.1222  RSS=2981213358.3113
+  Durbin-Watson=1.131808
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3><strong>Detecting Multicollinearity</strong></h3></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [6]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>print("\n" + "=" * 65)
+print("  MULTICOLLINEARITY — Variance Inflation Factors")
+print("=" * 65)
+
+X1_df = pd.DataFrame({
+    "Road_Length": df['Road_Length_km'],
+    "Density":     df['Vehicle_Density'],
+    "Reg_Vehicles":df['Registered_Vehicles']
+})
+vifs = vif(X1_df)
+for var, v in vifs.items():
+    flag = " ⚠ HIGH" if v &gt; 10 else ""
+    print(f"  VIF({var}) = {v:.3f}{flag}")
+print("\n  → Registered_Vehicles dropped due to severe multicollinearity")</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+=================================================================
+  MULTICOLLINEARITY — Variance Inflation Factors
+=================================================================
+  VIF(Road_Length) = 9.345
+  VIF(Density) = 45.532 ⚠ HIGH
+  VIF(Reg_Vehicles) = 66.338 ⚠ HIGH
+
+  → Registered_Vehicles dropped due to severe multicollinearity
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3><strong>Model 2 after Dropping No. of Registered Vehicles</strong></h3></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [8]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>
+X2   = np.column_stack([np.ones(len(df)), df['Road_Length_km'], df['Vehicle_Density']])
+b2, r2, yh2, _ = ols(y, X2)
+s2   = ols_stats(y, X2, b2, r2,
+                 "Road_Accidents",
+                 ["const","Road_Length","Density"],
+                 "Model 2 – Reduced OLS")
+</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+─────────────────────────────────────────────────────────────────
+  Model 2 – Reduced OLS  |  Dep. var: Road_Accidents  |  n=20
+─────────────────────────────────────────────────────────────────
+Variable                       Coef      Std.Err        t    p-val
+─────────────────────────────────────────────────────────────────
+const                  86476.428478 24343.567695   3.5523   0.0024 **
+Road_Length                0.073814     0.012578   5.8684   0.0000 ***
+Density                 3619.670238  1324.724533   2.7324   0.0142 *
+─────────────────────────────────────────────────────────────────
+  R²=0.959731  Adj-R²=0.954993  F=202.5783  p(F)=1.3877e-12
+  S.E. of regression=14335.7652  RSS=3493740780.7716
+  Durbin-Watson=1.009765
+
+  Ramsey RESET Test
+  F(2,15) = 4.405879,  p-value = 0.031243
+  Reject H0: Model has specification error
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3><strong>Checking for Specification Error</strong></h3></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [ ]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>
+# RESET Test on Model 2
+F_reset, p_reset = ramsey_reset(y, X2, yh2, r2)</pre></div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3><strong>Tranforming to LOG-LOG Model</strong></h3></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [ ]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>
+
+print("\n" + "=" * 65)
+print("  MODEL 3 — Log-Log (Double Log) OLS")
+print("=" * 65)
+
+ln_y  = df['ln_accidents'].values
+X3    = np.column_stack([np.ones(len(df)), df['ln_road_length'], df['ln_density']])
+b3, r3, yh3, _ = ols(ln_y, X3)
+s3    = ols_stats(ln_y, X3, b3, r3,
+                  "ln_Road_Accidents",
+                  ["const","ln_Road_Length","ln_Density"],
+                  "Model 3 – Log-Log OLS")
+
+print("\n  Interpretation (elasticities):")
+print(f"  • 1% ↑ ln_Density     → Road Accidents change by {b3[2]:.3f}%")
+print(f"  • 1% ↑ ln_Road_Length → Road Accidents change by {b3[1]:.3f}%")
+
+
+</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+=================================================================
+  MODEL 3 — Log-Log (Double Log) OLS
+=================================================================
+
+─────────────────────────────────────────────────────────────────
+  Model 3 – Log-Log OLS  |  Dep. var: ln_Road_Accidents  |  n=20
+─────────────────────────────────────────────────────────────────
+Variable                       Coef      Std.Err        t    p-val
+─────────────────────────────────────────────────────────────────
+const                      4.074756     1.363426   2.9886   0.0083 **
+ln_Road_Length             0.550962     0.099356   5.5454   0.0000 ***
+ln_Density                 0.192121     0.053680   3.5790   0.0023 **
+─────────────────────────────────────────────────────────────────
+  R²=0.954737  Adj-R²=0.949412  F=179.2926  p(F)=3.7479e-12
+  S.E. of regression=0.0410  RSS=0.0286
+  Durbin-Watson=0.955474
+
+  Interpretation (elasticities):
+  • 1% ↑ ln_Density     → Road Accidents change by 0.192%
+  • 1% ↑ ln_Road_Length → Road Accidents change by 0.551%
+
+  Breusch-Godfrey Test (AR1)
+  LM statistic = 7.296356,  p-value = 0.006909
+  Reject H0: Autocorrelation present
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell">#### <strong>Testing for Autocorrelation using Durbin Watson D-Test</strong></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [28]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>print("\n" + "=" * 65)
+print("  AUTOCORRELATION — Durbin-Watson Test")
+print("=" * 65)
+dw3 = durbin_watson(r3)
+dL, dU = 1.1, 1.54
+print(f"  DW statistic = {dw3:.6f}")
+print(f"  Critical values: dL={dL}, dU={dU}")
+if dw3 &lt; dL:
+    print("  → DW &lt; dL: POSITIVE AUTOCORRELATION detected")
+elif dw3 &lt; dU:
+    print("  → dL &lt; DW &lt; dU: Inconclusive")
+else:
+    print("  → DW &gt; dU: No autocorrelation")
+
+# BG Test on Log-Log Model
+print("\n" + "=" * 65)
+print("  AUTOCORRELATION — Breusch Godfrey Test")
+print("=" * 65)
+LM3, p3 = breusch_godfrey(r3, X3)</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+=================================================================
+  AUTOCORRELATION — Durbin-Watson Test
+=================================================================
+  DW statistic = 0.955474
+  Critical values: dL=1.1, dU=1.54
+  → DW &lt; dL: POSITIVE AUTOCORRELATION detected
+
+=================================================================
+  AUTOCORRELATION — Breusch Godfrey Test
+=================================================================
+
+  Breusch-Godfrey Test (AR1)
+  LM statistic = 7.296356,  p-value = 0.006909
+  Reject H0: Autocorrelation present
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cell cell-markdown">
+            <div class="cell-prompt prompt-empty">&nbsp;</div>
+            <div class="cell-content">
+                <div class="markdown-cell"><h3><strong>Model 4 Using GLS transformation using Prais Winsten</strong></h3></div>
+            </div>
+        </div>
+        <div class="cell cell-code">
+            <div class="cell-prompt input-prompt">In [13]:</div>
+            <div class="cell-content">
+                <div class="input-area"><pre>print("\n" + "=" * 65)
+print("  MODEL 4 — Prais-Winsten GLS (AR1 autocorrelation remedy)")
+print("=" * 65)
+
+def prais_winsten(y, X, max_iter=50, tol=1e-8):
+    """Iterative Prais-Winsten estimation."""
+    n, k = X.shape
+    _, resid, _, _ = ols(y, X)
+    rho = 0.0
+    for iteration in range(1, max_iter + 1):
+        rho_new = np.corrcoef(resid[1:], resid[:-1])[0, 1]
+        # Transform: Prais-Winsten for first obs, Cochrane-Orcutt for rest
+        y_star = np.empty(n)
+        X_star = np.empty((n, k))
+        y_star[0] = np.sqrt(1 - rho_new**2) * y[0]
+        X_star[0] = np.sqrt(1 - rho_new**2) * X[0]
+        y_star[1:] = y[1:] - rho_new * y[:-1]
+        X_star[1:] = X[1:] - rho_new * X[:-1]
+        beta_new, resid_new, yhat_new, _ = ols(y_star, X_star)
+        # Back-transform residuals to original scale
+        resid_orig = y - X @ beta_new
+        if abs(rho_new - rho) &lt; tol:
+            print(f"  Converged at iteration {iteration}, rho = {rho_new:.6f}")
+            break
+        rho = rho_new
+        resid = resid_orig
+    return beta_new, resid_orig, X @ beta_new, rho_new, y_star, X_star
+
+b4, r4, yh4, rho4, y_star, X_star = prais_winsten(ln_y, X3)
+
+# Stats on GLS model
+n, k = len(ln_y), X3.shape[1]
+SSR4 = r4 @ r4
+SST4 = ((ln_y - ln_y.mean()) ** 2).sum()
+R2_4 = 1 - SSR4 / SST4
+R2adj4 = 1 - (SSR4 / (n - k)) / (SST4 / (n - 1))
+s2_4   = SSR4 / (n - k)
+XtX_inv4 = np.linalg.inv(X3.T @ X3)
+se4    = np.sqrt(s2_4 * np.diag(XtX_inv4))
+t4     = b4 / se4
+p4     = [2*(1 - stats.t.cdf(abs(t), n-k)) for t in t4]
+dw4    = durbin_watson(r4)
+
+print(f"\n  {'Variable':&lt;22} {'Coef':&gt;12} {'Std.Err':&gt;12} {'t':&gt;8} {'p-val':&gt;8}")
+print(f"  {'─'*63}")
+labels4 = ["const","ln_Density","ln_Road_Length"]
+for i, lbl in enumerate(labels4):
+    sig = " ***" if p4[i] &lt; 0.001 else " **" if p4[i] &lt; 0.01 else " *" if p4[i] &lt; 0.05 else ""
+    print(f"  {lbl:&lt;22} {b4[i]:&gt;12.6f} {se4[i]:&gt;12.6f} {t4[i]:&gt;8.4f} {p4[i]:&gt;8.4f}{sig}")
+print(f"  {'─'*63}")
+print(f"  R²={R2_4:.6f}  Adj-R²={R2adj4:.6f}  rho(AR1)={rho4:.6f}")
+print(f"  Durbin-Watson (after GLS) = {dw4:.6f}")
+
+# 95% Confidence Intervals
+lo4, hi4 = confidence_intervals(b4, se4, n, k)
+print(f"\n  95% Confidence Intervals  [t_crit = {stats.t.ppf(0.975, n-k):.3f}]")
+print(f"  {'Variable':&lt;22} {'Coef':&gt;10} {'Lower':&gt;10} {'Upper':&gt;10}")
+for i, lbl in enumerate(labels4):
+    print(f"  {lbl:&lt;22} {b4[i]:&gt;10.5f} {lo4[i]:&gt;10.5f} {hi4[i]:&gt;10.5f}")
+
+# Interpretation
+print("\n  Final Model Interpretation:")
+print(f"  ln(Accidents) = {b4[0]:.4f} + {b4[1]:.4f}·ln(Density) + {b4[2]:.4f}·ln(Road_Length)")
+print(f"  • Intercept: e^{b4[0]:.2f} = {np.exp(b4[0]):.2f} accidents when vars → 1")
+print(f"  • 1% ↑ Vehicle Density → Accidents ↑ {b4[1]:.3f}%")
+print(f"  • 1% ↑ Road Length     → Accidents ↑ {b4[2]:.3f}%")
+print(f"  • R² = {R2_4:.3f} → {R2_4*100:.1f}% of variation explained")
+
+
+# Normality of GLS residuals
+JB4, pJB4 = jarque_bera(r4)
+
+</pre></div>
+                <div class="output-area">
+                    <div class="output-wrapper">
+                        <div class="cell-prompt output-prompt"></div>
+                        <div class="output-content">
+                            <div class="output-stream">
+=================================================================
+  MODEL 4 — Prais-Winsten GLS (AR1 autocorrelation remedy)
+=================================================================
+  Converged at iteration 13, rho = 0.617415
+
+  Variable                       Coef      Std.Err        t    p-val
+  ───────────────────────────────────────────────────────────────
+  const                      6.138060     1.456322   4.2148   0.0006 ***
+  ln_Density                 0.401934     0.106125   3.7874   0.0015 **
+  ln_Road_Length             0.254885     0.057337   4.4454   0.0004 ***
+  ───────────────────────────────────────────────────────────────
+  R²=0.948359  Adj-R²=0.942284  rho(AR1)=0.617415
+  Durbin-Watson (after GLS) = 0.754240
+
+  95% Confidence Intervals  [t_crit = 2.110]
+  Variable                     Coef      Lower      Upper
+  const                     6.13806    3.06549    9.21063
+  ln_Density                0.40193    0.17803    0.62584
+  ln_Road_Length            0.25489    0.13391    0.37586
+
+  Final Model Interpretation:
+  ln(Accidents) = 6.1381 + 0.4019·ln(Density) + 0.2549·ln(Road_Length)
+  • Intercept: e^6.14 = 463.15 accidents when vars → 1
+  • 1% ↑ Vehicle Density → Accidents ↑ 0.402%
+  • 1% ↑ Road Length     → Accidents ↑ 0.255%
+  • R² = 0.948 → 94.8% of variation explained
+
+  Jarque-Bera Normality Test
+  Chi²(2) = 3.332171,  p-value = 0.188985
+  Fail to reject H0: Residuals are normally distributed
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="export-footer">
+        Exported with <a href="https://www.runcell.dev/tool/ipynb-to-html">runcell</a> — convert notebooks to HTML or PDF anytime at runcell.dev.
+    </footer>
+</body>
+</html>
